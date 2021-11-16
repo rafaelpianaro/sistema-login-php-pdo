@@ -1,3 +1,6 @@
+<?php
+    include_once 'conexao.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,7 @@
 <body>
     <!-- exemplo para criptografar senha -->
     <?php
-        echo password_hash('123456',PASSWORD_DEFAULT);
+        // echo password_hash('123456',PASSWORD_DEFAULT);
     ?>
 
     <?php
