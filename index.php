@@ -7,6 +7,10 @@
     <title>Sistema de Login</title>
 </head>
 <body>
+    <!-- exemplo para criptografar senha -->
+    <?php
+        echo password_hash('123456',PASSWORD_DEFAULT);
+    ?>
 
     <?php
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
