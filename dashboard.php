@@ -2,6 +2,11 @@
     session_start();
     ob_start();
     include_once 'conexao.php';
+
+    if(!isset($_SESSION['id']) and !isset($_SESSION['nome'])){
+        $_SESSION['msg'] = "<p style='color: red'>Necessário logar.</p>";
+        header("Location: index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +17,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-<h2>Dashboard</h2>  
+    <h2>Dashboard <?php echo $_SESSION['nome'] ?></h2><br><br>
+    <a href="sair.php">Sair</a>
 </body>
 </html>
