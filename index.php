@@ -1,5 +1,6 @@
 <?php
     session_start();
+    ob_start();
     include_once 'conexao.php';
 ?>
 <!DOCTYPE html>
@@ -28,7 +29,14 @@
             $result_usuario->execute();
             if(($result_usuario) and ($result_usuario->rowCount() != 0)){
                 $row_usuario = $result_usuario->fetch(PDO::FETCH_ASSOC);
-                var_dump('fetch',$row_usuario);
+                // var_dump('fetch',$row_usuario);
+                if(password_verify($dados['senha_usuario'], $row_usuario['senha_usuario'])){
+                    $_SESSION['id'] = $row_usuario['id'];
+                    $_SESSION['nome'] = $row_usuario['nome'];
+                    header("Location: dashboard.php");
+                }else{
+                    $_SESSION['msg'] = "<p style='color: red'>Erro: Usuario ou senha inválida.</p>";
+                }
             }else{
                 $_SESSION['msg'] = "<p style='color: red'>Erro: Usuario ou senha inválida.</p>";
             }
@@ -42,9 +50,9 @@
     <h1>Login</h1>
     <form action="" method="POST">
         <label for="">Usuário</label>
-        <input type="text" name="usuario" placeholder="Digite o usuário"><br><br>
+        <input type="text" name="usuario" value="<?php if(isset($dados['usuario'])) echo $dados['usuario'] ?>" placeholder="Digite o usuário"><br><br>
         <label for="">Senha</label>
-        <input type="password" name="senha_usuario" placeholder="Digite a senha"><br><br>
+        <input type="password" name="senha_usuario" value="<?php if(isset($dados['senha_usuario'])) echo $dados['senha_usuario'] ?>"placeholder="Digite a senha"><br><br>
         <input type="submit" name="SendLogin" id="" value="acessar">
     </form>
 </body>
