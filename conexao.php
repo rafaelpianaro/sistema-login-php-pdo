@@ -1,14 +1,16 @@
 <?php
-    // $host = "127.0.0.1";
-    $hostname = "localhost";
+    $servername = "localhost";
     $username = "root";
-    $pass = "";
-    $dbname = "sistema_login_phppp";
+    $password = "";
+    $dbname = "sistema_login_php";
     $port = 3308;
 
-    try{
-        $conn = new PDO("mysql:hostname=$hostname,port=$port,dbname=" . $dbname, $username, $pass);
-        // echo "Conexao com db realizada com sucesso.";
-    }catch(PDOException $err){
-        echo "Erro: falha ao conectar com db. Erro " . $err->getMessage();
+    try {
+    $conn = new PDO("mysql:host=$servername;port=$port;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Conexao com db realizada com sucesso.";
+    } catch(PDOException $e) {
+    echo "Erro: falha ao conectar com db. Erro: " . $e->getMessage();
     }
+?>

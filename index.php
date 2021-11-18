@@ -19,7 +19,7 @@
     <?php
         $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
         if(!empty($dados['SendLogin'])){
-            var_dump($dados);
+            // var_dump($dados);
             $query_usuario = "select id, usuario, senha_usuario from usuarios 
                                 where usuario = :usuario 
                                 limit 1";
@@ -28,7 +28,7 @@
             $result_usuario->execute();
             if(($result_usuario) and ($result_usuario->rowCount() != 0)){
                 $row_usuario = $result_usuario->fetch(PDO::FETCH_ASSOC);
-                var_dump($row_usuario);
+                var_dump('fetch',$row_usuario);
             }else{
                 $_SESSION['msg'] = "<p style='color: red'>Erro: Usuario ou senha inválida.</p>";
             }
