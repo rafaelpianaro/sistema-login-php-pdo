@@ -18,6 +18,6 @@
 </head>
 <body>
     <h2>Dashboard <?php echo $_SESSION['nome'] ?></h2><br><br>
-    <a href="sair.php">Sair</a>
+    <a href="logout.php">Sair</a>
 </body>
 </html>
